@@ -1,9 +1,6 @@
 FlowRouter.route '/',
   action: (params, queryParams) ->
-    if Meteor.isCordova
-      ReactLayout.render(MobileWelcome, {name: "Jaro"})
-    else
-      ReactLayout.render(WelcomeComponent, {name: "Jaro"})
+    ReactLayout.render(WelcomeComponent)
 
 FlowRouter.route '/exam/:user',
   subscriptions: (params) ->

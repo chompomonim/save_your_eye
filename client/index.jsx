@@ -1,15 +1,17 @@
 WelcomeComponent = React.createClass({
-  render() {
-    return <div>
-      <h1>Hello, {this.props.name}</h1>
-    </div>
-  }
-});
+  createUser(event) {
+    event.preventDefault();
+    var text = React.findDOMNode(this.refs.userName).value.trim()
+    FlowRouter.go('/exam/'+text);
+  },
 
-MobileWelcome = React.createClass({
   render() {
-    return <div>
-      <h1>Mobile welcomes {this.props.name}</h1>
+    return <div className="main">
+      <h1>Save you eye!</h1>
+
+      <form className="new-user" onSubmit={this.createUser}>
+        <input type="text" ref="userName" placeholder="Enter your name" />
+      </form>
     </div>
   }
 });
