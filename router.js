@@ -8,8 +8,10 @@ FlowRouter.route('/', {
     }
 });
 
-FlowRouter.route('/symbol', {
+FlowRouter.route('/exam/:user', {
     action: function(params, queryParams) {
-        ReactLayout.render(SymbolComponent, {size: 200, r: 55, a: 90, cx: 100, cy:100})
+        console.log("Params", params)
+        exam = examination.getSession(params.user)
+        ReactLayout.render(SymbolComponent, {size: 200, r: exam.size, a: exam.direction*90, cx: 100, cy:100})
     }
 });
