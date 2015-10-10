@@ -7,3 +7,9 @@ FlowRouter.route('/', {
         }
     }
 });
+
+FlowRouter.route('/symbol', {
+    action: function(params, queryParams) {
+        ReactLayout.render(SymbolComponent, {size: 200, r: 55, a: 90, cx: 100, cy:100})
+    }
+});
