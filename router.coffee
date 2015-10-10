@@ -17,7 +17,7 @@ FlowRouter.route '/exam/:user',
 # This route is used for testing from browser
 FlowRouter.route '/controls/:user',
   subscriptions: (params) ->
-    @register 'userState', Meteor.subscribe 'states', params.user
+    @register 'controlState', Meteor.subscribe 'states', params.user
   action: (params) ->
-    FlowRouter.subsReady 'userState', =>
+    FlowRouter.subsReady 'controlState', =>
       ReactLayout.render(ControlsComponent, {user: params.user})
