@@ -8,11 +8,10 @@ FlowRouter.route '/exam/:user',
   action: (params, queryParams) ->
     FlowRouter.subsReady 'userState', =>
       if Meteor.isCordova
-        exam = examination.getSession(params.user)
         FlowRouter.subsReady 'userState', =>
           ReactLayout.render(ControlsComponent, {user: params.user})
       else
-        ReactLayout.render(SymbolComponent, {user: params.user, size: 200, cx: 100, cy:100})
+        ReactLayout.render(SymbolScreen, {user: params.user})
 
 # This route is used for testing from browser
 FlowRouter.route '/controls/:user',
@@ -21,11 +20,3 @@ FlowRouter.route '/controls/:user',
   action: (params) ->
     FlowRouter.subsReady 'controlState', =>
       ReactLayout.render(ControlsComponent, {user: params.user})
-
-# This route is used for testing from browser using alternative controls
-FlowRouter.route '/controlsB/:user',
-  subscriptions: (params) ->
-    @register 'userState', Meteor.subscribe 'states', params.user
-  action: (params) ->
-    FlowRouter.subsReady 'userState', =>
-      ReactLayout.render(ControlsBComponent, {user: params.user})
