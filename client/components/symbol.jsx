@@ -23,17 +23,20 @@ SymbolComponent = React.createClass({
     };
     var rotate = "rotate("+this.props.a+", 100, 100)";
     return (
-      <svg xmlns="http://www.w3.org/svg/2000"
-        viewBox={viewBox}
-        width={size}
-        height={size}
-        fill={fill}>
-        <g transform={rotate}>
-          <circle {...outterCircle} fill="black"/>
-          <circle {...innerCircle} fill="white"/>
-          <rect {...space} fill="white"/>
-        </g>
-      </svg>
+      <div className="container" style={{"paddingTop": "100px"}}>
+        <svg xmlns="http://www.w3.org/svg/2000"
+          viewBox={viewBox}
+          width={size}
+          height={size}
+          fill={fill}
+          style={{display: "block", margin: "0 auto"}} >
+          <g transform={rotate}>
+            <circle {...outterCircle} fill="black"/>
+            <circle {...innerCircle} fill="white"/>
+            <rect {...space} fill="white"/>
+          </g>
+        </svg>
+      </div>
     )
 }
 });
