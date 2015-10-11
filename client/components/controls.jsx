@@ -32,7 +32,7 @@ ControlsComponent = React.createClass({
   },
 
   restartGame() {
-    States.update(this.data.status._id, {$set: {mistake: 0}});
+    States.update(this.data.status._id, {$set: {mistake: 0, size: 100}});
   },
 
   render() {
