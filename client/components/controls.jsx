@@ -38,7 +38,7 @@ ControlsComponent = React.createClass({
   render() {
     var current_status;
     var restart_button;
-    if (this.data.status.mistake > 2) {
+    if (this.data.status && this.data.status.mistake > 2) {
       restart_button = <button onClick={this.restartGame}>Restart</button>
     }
     if (this.data.status) {
