@@ -40,12 +40,10 @@ ControlsComponent = React.createClass({
     if (this.data.status) {
       current_status = (
         <div className="main">
-          <div>Current size: {this.data.status.size}</div>
-          <div>Mistakes: {this.data.status.mistake}</div>
           <div className="directions">
+            <a onClick={this.submitDirection.bind(this, 2)}><img src="/2.png" /></a>
             <a onClick={this.submitDirection.bind(this, 0)}><img src="/0.png" /></a>
             <a onClick={this.submitDirection.bind(this, 1)}><img src="/1.png" /></a>
-            <a onClick={this.submitDirection.bind(this, 2)}><img src="/2.png" /></a>
             <a onClick={this.submitDirection.bind(this, 3)}><img src="/3.png" /></a>
           </div>
 

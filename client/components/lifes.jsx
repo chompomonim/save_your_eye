@@ -23,9 +23,8 @@ Lifes = React.createClass({
         <svg xmlns="http://www.w3.org/svg/2000"
           viewBox={viewBox}
           width={size}
-          height={size}
-          fill={fill}
-          style={{display: "block", margin: "0 auto"}} >
+          height={size/2}
+          fill={fill}>
           {lifes}
         </svg>
     )
