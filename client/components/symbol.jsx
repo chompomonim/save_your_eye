@@ -79,12 +79,21 @@ SymbolScreen = React.createClass({
   },
 
   render() {
+    var symbol;
+    if (this.data.status.mistake < 3) {
+      symbol = <SymbolComponent size={200}
+                 r={this.getSize()}
+                 a={this.getDirection()*90}
+                 cx= {100} cy={100}  />
+    } else {
+      symbol = <div className='game-over'>
+        <h1>Game Over</h1>
+        <div className="text">Symbol size: {this.data.status.size}</div>
+      </div>
+    }
     return (
       <div className="show-symbol">
-        <SymbolComponent size={200}
-                         r={this.getSize()}
-                         a={this.getDirection()*90}
-                         cx= {100} cy={100}  />
+        {symbol}
       </div>
     )
   }
