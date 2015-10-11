@@ -6,7 +6,7 @@ WelcomeComponent = React.createClass({
   },
 
   render() {
-    return <div className="main">
+    return <div className="main welcome">
       <h1>Save you eye!</h1>
       <form className="new-user" onSubmit={this.createUser}>
         <input type="text" ref="userName" placeholder="Enter your name" />
