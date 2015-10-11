@@ -1,4 +1,5 @@
 SymbolComponent = React.createClass({
+  mixins: [ReactMeteorData],
 
   getDefaultProps: function() {
     return {
@@ -7,21 +8,30 @@ SymbolComponent = React.createClass({
         }
   },
 
+  getMeteorData() {
+    return {
+      exam: examination.getSession(this.props.user)
+    }
+  },
+
   render() {
     var size = this.props.size
     var fill = this.props.fill
 
+    r = this.data.exam.size;
+    a = this.data.exam.direction * 90
+
     var viewBox = [0, 0, size, size].join(' ')
     var center = _(this.props).pick("cx","cy")
-    var outterCircle = _({r: this.props.r}).extend(center);
-    var innerCircle = _({r: this.props.r * 0.54}).extend(center);
+    var outterCircle = _({r: r}).extend(center);
+    var innerCircle = _({r: r * 0.54}).extend(center);
     var space = {
-      x: center.cx+this.props.r*0.30,
-      y: center.cy-this.props.r*0.22,
-      width: this.props.r*0.81,
-      height: this.props.r*0.45
+      x: center.cx+r*0.30,
+      y: center.cy-r*0.22,
+      width: r*0.81,
+      height: r*0.45
     };
-    var rotate = "rotate("+this.props.a+", 100, 100)";
+    var rotate = "rotate("+a+", 100, 100)";
     return (
       <div className="container" style={{"paddingTop": "100px"}}>
         <svg xmlns="http://www.w3.org/svg/2000"
