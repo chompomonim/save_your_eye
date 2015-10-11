@@ -4,7 +4,11 @@ SymbolComponent = React.createClass({
   getDefaultProps: function() {
     return {
           size: 220,
-          fill: 'currentcolor'
+          fill: 'currentcolor',
+          r: 100,
+          a: 0,
+          cx: 100,
+          cy: 100
         }
   },
 
@@ -48,5 +52,54 @@ SymbolComponent = React.createClass({
         </svg>
       </div>
     )
-}
+  }
 });
+
+SymbolScreen = React.createClass({
+  mixins: [ReactMeteorData],
+
+  getMeteorData() {
+    return {
+      status: States.findOne({user: this.props.user})
+    }
+  },
+
+  componentWillMount() {
+    exam = examination.getSession(this.props.user);
+  },
+
+  getSize() {
+    if (this.data.status) {
+      return this.data.status.size;
+    } else {
+      return 100;
+    }
+  },
+
+  getDirection() {
+    if (this.data.status) {
+      return this.data.status.direction;
+    } else {
+      return 0;
+    }
+  },
+
+  render() {
+    // Check what to render
+    var symbol;
+    if (this.data.status && this.data.status.selected) {
+      symbol = <img src="/like.png" />
+    } else {
+      symbol = <SymbolComponent size={200}
+                         r={this.getSize()}
+                         a={this.getDirection()*90}
+                         cx= {100} cy={100}  />
+    }
+
+    return (
+      <div className="show-symbol">
+        {symbol}
+      </div>
+    )
+  }
+})

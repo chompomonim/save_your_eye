@@ -7,6 +7,6 @@ App.info({
   website: 'http://save_your_eye.meteor.com'
 });
 
-App.setPreference('BackgroundColor', '0xff0000ff');
+// App.setPreference('BackgroundColor', '0xff0000ff');
 App.setPreference('HideKeyboardFormAccessoryBar', true);
 App.setPreference('Orientation', 'default');
