@@ -37,6 +37,10 @@ ControlsComponent = React.createClass({
 
   render() {
     var current_status;
+    var restart_button;
+    if (this.data.status.mistake > 2) {
+      restart_button = <button onClick={this.restartGame}>Restart</button>
+    }
     if (this.data.status) {
       current_status = (
         <div className="main">
@@ -47,10 +51,10 @@ ControlsComponent = React.createClass({
             <a onClick={this.submitDirection.bind(this, 3)}><img src="/3.png" /></a>
           </div>
 
-          <div className="selection-result">
-            {this.state.selected}
-            <button onClick={this.restartGame}>Restart</button>
+          <div className="result">
             <Lifes deaths={this.data.status.mistake} />
+            <div className="selection-status">{this.state.selected}</div>
+            {restart_button}
           </div>
         </div>
       )
