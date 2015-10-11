@@ -11,7 +11,7 @@ Lifes = React.createClass({
   render() {
     var size = this.props.size
     var fill = this.props.fill
-    var deaths = this.props.deaths < 3 ? this.props.deaths : 2
+    var deaths = this.props.deaths < 3 ? this.props.deaths : 3
     lifes = [];
     for (i=0; i < 3; i++) {
       cx = 40+i*65;
