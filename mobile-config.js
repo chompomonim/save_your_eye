@@ -10,3 +10,14 @@ App.info({
 // App.setPreference('BackgroundColor', '0xff0000ff');
 App.setPreference('HideKeyboardFormAccessoryBar', true);
 App.setPreference('Orientation', 'default');
+
+App.launchScreens({
+  'android_xhdpi_portrait': 'resources/splash-720x1280.png'
+});
+
+App.icons({
+  'android_ldpi': 'resources/icon.png',
+  'android_mdpi': 'resources/icon.png',
+  'android_hdpi': 'resources/icon.png',
+  'android_xhdpi': 'resources/icon.png'
+});
