@@ -31,12 +31,17 @@ ControlsComponent = React.createClass({
     States.update(status._id, status);
   },
 
+  restartGame() {
+    States.update(this.data.status._id, {$set: {mistake: 0}});
+  },
+
   render() {
     var current_status;
     if (this.data.status) {
       current_status = (
         <div className="main">
           <div>Current size: {this.data.status.size}</div>
+          <div>Mistakes: {this.data.status.mistake}</div>
           <div className="directions">
             <a onClick={this.submitDirection.bind(this, 0)}><img src="/0.png" /></a>
             <a onClick={this.submitDirection.bind(this, 1)}><img src="/1.png" /></a>
@@ -46,6 +51,8 @@ ControlsComponent = React.createClass({
 
           <div className="selection-result">
             {this.state.selected}
+            <button onClick={this.restartGame}>Restart</button>
+            <Lifes deaths={this.data.status.mistake} />
           </div>
         </div>
       )
