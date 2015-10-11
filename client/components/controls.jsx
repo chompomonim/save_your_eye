@@ -14,19 +14,21 @@ ControlsComponent = React.createClass({
   },
 
   submitDirection(direction) {
-    if (direction === this.data.status.direction) {
-      id = States.findOne({user: this.props.user})._id;
-      States.update(id, {$set: {selected: true, direction: _.random(0,3)}});
+    var status = this.data.status;
+    var passed;
+    if (direction === status.direction) {
+      passed = true;
+      status.size = status.size * 0.9;
       this.setState({selected: ":)"});
     } else {
+      passed = false;
+      status.size = (status.size <= 90) ? status.size / 0.9 : 100;
+      // status.size = status.size / 0.9
+      status.mistake++;
       this.setState({selected: ":("});
-      console.log('FAIL :(', direction);
     }
-  },
-
-  restartCheck() {
-    id = States.findOne({user: this.props.user})._id;
-    States.update(id, {$set: {selected: false, direction: _.random(0,3)}});
+    status.direction = _.random(0,3);
+    States.update(status._id, status);
   },
 
   render() {
@@ -43,8 +45,7 @@ ControlsComponent = React.createClass({
           </div>
 
           <div className="selection-result">
-            <h2>{this.state.selected}</h2>
-            <button onClick={this.restartCheck}>Restart</button>
+            {this.state.selected}
           </div>
         </div>
       )

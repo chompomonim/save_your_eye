@@ -51,7 +51,15 @@ SymbolScreen = React.createClass({
   },
 
   componentWillMount() {
-    exam = examination.getSession(this.props.user);
+    // Create user's status if there are no in database.
+    if (!this.data.status) {
+      States.insert({
+        user: this.props.user,
+        direction: _.random(0,3),
+        size: 100,
+        mistake: 0
+      });
+    }
   },
 
   getSize() {
@@ -71,20 +79,12 @@ SymbolScreen = React.createClass({
   },
 
   render() {
-    // Check what to render
-    var symbol;
-    if (this.data.status && this.data.status.selected) {
-      symbol = <img src="/like.png" />
-    } else {
-      symbol = <SymbolComponent size={200}
+    return (
+      <div className="show-symbol">
+        <SymbolComponent size={200}
                          r={this.getSize()}
                          a={this.getDirection()*90}
                          cx= {100} cy={100}  />
-    }
-
-    return (
-      <div className="show-symbol">
-        {symbol}
       </div>
     )
   }
